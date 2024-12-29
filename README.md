@@ -50,9 +50,10 @@ Classification report:
 weighted avg       0.50      0.50      0.45        20
 
 
-### Decision Tree Results
-- **Accuracy**: 65%
-- Classification report:
+##Karar Ağacı Sonuçları
+Doğruluk (Accuracy): %65
+
+Sınıflandırma Raporu:
 
           precision    recall  f1-score   support
 
@@ -82,21 +83,24 @@ weighted avg       0.79      0.65      0.60        20
 
 ---
 
-## How to Run the Project
+##Projenin Çalıştırılması
+Depoyu klonlayın:
 
-1. Clone the repository:
- ```bash
- git clone <repository-url>
- cd <repository-folder>
+bash
+Kodu kopyala
+git clone <repository-url>
+cd <repository-folder>
+Bağımlılıkları yükleyin:
 
-Install dependencies:
-
+bash
+Kodu kopyala
 pip install -r requirements.txt
+Mall_Customers.csv dosyasını çalışma dizinine yerleştirin.
 
-Place the Mall_Customers.csv file in the working directory.
+Script'i çalıştırın:
 
-Run the script:
-
+bash
+Kodu kopyala
 python main.py
-
-View results, including classification reports and heatmaps, in the terminal and plots displayed during execution.
+Sonuçları inceleyin:
+Terminalde sınıflandırma raporlarını ve ısı haritalarını içeren çıktıları görüntüleyin; ayrıca, çalıştırma sırasında oluşturulan grafiklere göz atın.
