@@ -1,106 +1,108 @@
-# Mall_Customers-LogisticRegression-DecisionTreeC
-Müşteri Cinsiyet Tahmin Analizi
-Bu proje, müşterilerin yaş, yıllık gelir ve harcama puanına dayalı olarak cinsiyetlerini tahmin etmek için Lojistik Regresyon ve Karar Ağacı sınıflandırma modellerini kullanır. Kullanılan veri kümesi, alışveriş merkezi müşterilerinin demografik ve harcama verilerini içeren Mall_Customers.csv dosyasıdır.
+# Data Analysis and Linear Regression Model
 
-İçindekiler
-Veri Kümesine Genel Bakış
-Veri Ön İşleme
-Model Uygulaması
-Performans Değerlendirmesi
-Bağımlılıklar
-Projeyi Çalıştırma
-Veri Kümesine Genel Bakış
-Veri kümesi, aşağıdaki sütunları içeren 200 kayıttan oluşur:
-
-CustomerID: Her müşteriye atanan benzersiz kimlik (modelleme için kullanılmamıştır).
-Gender: Müşterinin cinsiyeti (Erkek/Kadın).
-Age: Müşterinin yaşı.
-Annual Income (k$): Müşterinin yıllık geliri (bin dolar cinsinden).
-Spending Score (1-100): Müşterinin harcama davranışına dayalı olarak atanmış puan.
-Veri Ön İşleme
-Kategorik Değişkenlerin Kodlanması:
-
-Gender sütunu, LabelEncoder kullanılarak sayısal değerlere dönüştürülür:
-Male: 1
-Female: 0
-Özellik Seçimi:
-
-Modelleme için kullanılan özellikler:
-Age
-Annual Income (k$)
-Spending Score (1-100)
-Hedef değişken: Gender
-Eğitim-Test Ayrımı:
-
-Veri kümesi, train_test_split kullanılarak eğitim (%90) ve test (%10) setlerine ayrılmıştır.
-Standardizasyon:
-
-Özellikler, değerleri normalleştirmek ve model performansını artırmak için StandardScaler kullanılarak ölçeklendirilmiştir.
-
-Classification report:
-
-            precision    recall  f1-score   support
-
-         0       0.50      0.80      0.62        10
-         1       0.50      0.20      0.29        10
-
-  accuracy                           0.50        20
- macro avg       0.50      0.50      0.45        20
-
-weighted avg       0.50      0.50      0.45        20
-
-
-##Karar Ağacı Sonuçları
-Doğruluk (Accuracy): %65
-
-Sınıflandırma Raporu:
-
-          precision    recall  f1-score   support
-
-       0       0.59      1.00      0.74        10
-       1       1.00      0.30      0.46        10
-
-accuracy                           0.65        20
-
-macro avg       0.79      0.65      0.60        20
-weighted avg       0.79      0.65      0.60        20
-
-
-### Heatmaps
-- Confusion matrices for both models are visualized using heatmaps.
+## Introduction
+This project involves working with a dataset using Python to perform data analysis and build a linear regression model. The steps include data processing, visualization, and machine learning.
 
 ---
 
-## Dependencies
-
-- Python 3.9+
-- Required libraries:
-- `pandas`
-- `numpy`
-- `scikit-learn`
-- `matplotlib`
-- `seaborn`
+## Technologies and Libraries Used
+- **Python**: Core programming language for data processing and analysis.
+- **Pandas**: Used for handling data frames and loading CSV files.
+- **Matplotlib**: Used for data visualization.
+- **Scikit-learn**: Used for building and predicting with the linear regression model.
 
 ---
 
-##Projenin Çalıştırılması
-Depoyu klonlayın:
+## Dataset
+The project uses a CSV file (**"reno_clio.csv"**) containing information about a car's year and mileage. The dataset includes the following columns:
+- **year**: The car's manufacturing year.
+- **km**: The car's mileage for that year.
+- **age**: The car's age (2024 - year).
 
-bash
-Kodu kopyala
-git clone <repository-url>
-cd <repository-folder>
-Bağımlılıkları yükleyin:
+---
 
-bash
-Kodu kopyala
-pip install -r requirements.txt
-Mall_Customers.csv dosyasını çalışma dizinine yerleştirin.
+## Analysis and Modeling Process
 
-Script'i çalıştırın:
+### 1. Variable Definition and Data Types
+The initial part of the code introduces Python data types and collection structures. This step demonstrates basic data types, lists, sets, and dictionaries.
 
-bash
-Kodu kopyala
-python main.py
-Sonuçları inceleyin:
-Terminalde sınıflandırma raporlarını ve ısı haritalarını içeren çıktıları görüntüleyin; ayrıca, çalıştırma sırasında oluşturulan grafiklere göz atın.
+### 2. Data Loading
+The CSV file is loaded using **pandas**:
+```python
+import pandas as pd
+car_data = pd.read_csv("reno_clio.csv")
+```
+This step enables the analysis of the dataset's basic properties.
+
+### 3. Data Visualization
+The relationship between "age" and "km" is visualized using **Matplotlib**:
+```python
+import matplotlib.pyplot as plt
+plt.scatter(car_data["age"], car_data["km"], color="red")
+plt.xlabel("Age")
+plt.ylabel("Km")
+plt.title("Age-Km Graph")
+plt.show()
+```
+This graph helps understand how mileage changes as the car ages.
+
+### 4. Linear Regression Model
+A linear regression model is created and trained using **Scikit-learn**:
+```python
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(car_data[["age"]], car_data["km"])
+```
+The model coefficients and intercept are obtained as follows:
+```python
+print("Coefficient:", model.coef_)
+print("Intercept:", model.intercept_)
+```
+
+### 5. Predictions and Model Visualization
+The predicted values are compared with actual values:
+```python
+plt.scatter(car_data["age"], car_data["km"], color="red")
+plt.plot(car_data["age"], model.predict(car_data[["age"]]), color="blue")
+plt.xlabel("Age")
+plt.ylabel("Km")
+plt.title("Age-Km Graph")
+plt.show()
+```
+This visual makes it easy to observe the model's accuracy.
+
+---
+
+## Results
+The key findings of this project include:
+- There is a positive relationship between car age and mileage.
+- The linear regression model successfully predicts mileage based on age.
+- Meaningful coefficients were obtained through model training.
+
+---
+
+## How to Run
+1. Install the required Python packages:
+    ```bash
+    pip install pandas matplotlib scikit-learn
+    ```
+2. Add the **"reno_clio.csv"** file to the project directory.
+3. Run the Python script:
+    ```bash
+    python script.py
+    ```
+4. Review the outputs and visualizations.
+
+---
+
+## Future Steps
+- Experiment with more complex models (e.g., polynomial regression).
+- Evaluate the model's performance using different datasets.
+- Include performance metrics (e.g., MSE, R^2).
+- Expand on missing data handling and preprocessing steps.
+
+---
+
+This project serves as a comprehensive guide for those interested in exploring data analysis and machine learning.
+
+
