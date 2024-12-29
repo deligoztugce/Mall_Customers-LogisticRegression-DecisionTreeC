@@ -1,85 +1,41 @@
 # Mall_Customers-LogisticRegression-DecisionTreeC
-Customer Gender Prediction Analysis
+Müşteri Cinsiyet Tahmin Analizi
+Bu proje, müşterilerin yaş, yıllık gelir ve harcama puanına dayalı olarak cinsiyetlerini tahmin etmek için Lojistik Regresyon ve Karar Ağacı sınıflandırma modellerini kullanır. Kullanılan veri kümesi, alışveriş merkezi müşterilerinin demografik ve harcama verilerini içeren Mall_Customers.csv dosyasıdır.
 
-This project uses Logistic Regression and Decision Tree classification models to predict customer gender based on their age, annual income, and spending score. The dataset used is Mall_Customers.csv, which contains demographic and spending data for mall customers.
+İçindekiler
+Veri Kümesine Genel Bakış
+Veri Ön İşleme
+Model Uygulaması
+Performans Değerlendirmesi
+Bağımlılıklar
+Projeyi Çalıştırma
+Veri Kümesine Genel Bakış
+Veri kümesi, aşağıdaki sütunları içeren 200 kayıttan oluşur:
 
-Table of Contents
+CustomerID: Her müşteriye atanan benzersiz kimlik (modelleme için kullanılmamıştır).
+Gender: Müşterinin cinsiyeti (Erkek/Kadın).
+Age: Müşterinin yaşı.
+Annual Income (k$): Müşterinin yıllık geliri (bin dolar cinsinden).
+Spending Score (1-100): Müşterinin harcama davranışına dayalı olarak atanmış puan.
+Veri Ön İşleme
+Kategorik Değişkenlerin Kodlanması:
 
-Dataset Overview
-
-Data Preprocessing
-
-Model Implementation
-
-Performance Evaluation
-
-Dependencies
-
-How to Run the Project
-
-Dataset Overview
-
-The dataset contains 200 records with the following columns:
-
-CustomerID: Unique ID assigned to each customer (not used in modeling).
-
-Gender: Gender of the customer (Male/Female).
-
-Age: Age of the customer.
-
-Annual Income (k$): Annual income of the customer in thousand dollars.
-
-Spending Score (1-100): Score assigned to the customer based on their spending behavior.
-
-Data Preprocessing
-
-Encoding Categorical Variables:
-
-The Gender column is encoded to numerical values using LabelEncoder:
-
+Gender sütunu, LabelEncoder kullanılarak sayısal değerlere dönüştürülür:
 Male: 1
-
 Female: 0
+Özellik Seçimi:
 
-Feature Selection:
-
-Features used for modeling:
-
+Modelleme için kullanılan özellikler:
 Age
-
 Annual Income (k$)
-
 Spending Score (1-100)
+Hedef değişken: Gender
+Eğitim-Test Ayrımı:
 
-Target variable: Gender
+Veri kümesi, train_test_split kullanılarak eğitim (%90) ve test (%10) setlerine ayrılmıştır.
+Standardizasyon:
 
-Train-Test Split:
-
-The dataset is split into training (90%) and testing (10%) sets using train_test_split.
-
-Standardization:
-
-Features are scaled using StandardScaler to normalize the values and improve model performance.
-
-Model Implementation
-
-1. Logistic Regression
-
-A logistic regression model is trained using the standardized training data.
-
-It predicts the probability of a customer being male or female.
-
-2. Decision Tree
-
-A decision tree classifier with a maximum depth of 5 is used to predict gender.
-
-The tree structure is visualized using the plot_tree function from sklearn.tree.
-
-Performance Evaluation
-
-Logistic Regression Results
-
-Accuracy: 50%
+Özellikler, değerleri normalleştirmek ve model performansını artırmak için StandardScaler kullanılarak ölçeklendirilmiştir.
 
 Classification report:
 
